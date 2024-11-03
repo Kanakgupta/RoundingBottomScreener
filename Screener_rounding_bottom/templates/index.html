@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Scanner</title>
+    <style>
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select a Stock Category</h1>
+    <form action="/process" method="POST">
+        <div>
+            <button class="button" name="category" value="NIFTY-500_TOP_STOCKS">NIFTY-500 TOP STOCKS</button>
+            <button class="button" name="category" value="NIFTY-COMMODITIES">NIFTY COMMODITIES</button>
+            <button class="button" name="category" value="NIFTY-CONSUMPTION">NIFTY CONSUMPTION</button>
+            <button class="button" name="category" value="NIFTY-DIGITAL">NIFTY DIGITAL</button>
+            <button class="button" name="category" value="NIFTY-DIVIDEND-OPPORTUNITIES">NIFTY DIVIDEND OPPORTUNITIES</button>
+            <button class="button" name="category" value="NIFTY-INFRASTRUCTURE">NIFTY INFRASTRUCTURE</button>
+            <button class="button" name="category" value="NIFTY-MANUFACTURING">NIFTY MANUFACTURING</button>
+            <button class="button" name="category" value="NIFTY-MICROCAP-250">NIFTY MICROCAP 250</button>
+            <button class="button" name="category" value="NIFTY-MIDSMALLCAP">NIFTY MIDSMALLCAP</button>
+            <button class="button" name="category" value="NIFTY-OIL-GAS">NIFTY OIL & GAS</button>
+            <button class="button" name="category" value="NIFTY-TATA-GROUP">NIFTY TATA GROUP</button>
+        </div>
+    </form>
+</body>
+</html>

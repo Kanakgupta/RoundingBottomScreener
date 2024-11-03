@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress for {{ category }}</title>
+    <style>
+        #progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 25px;
+            margin: 20px 0;
+        }
+
+        #progress-bar {
+            width: 0%;
+            height: 30px;
+            background-color: #76c7c0;
+            border-radius: 25px;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+        }
+
+        #stock-list {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Progress for {{ category }}</h1>
+
+    <div id="progress-container">
+        <div id="progress-bar">0%</div>
+    </div>
+
+    <h3>Stocks Passing Rounding Bottom Criteria:</h3>
+    <ul id="stock-list"></ul>
+
+    <script>
+        const progressSource = new EventSource("/progress_stream/{{ category }}");
+
+        progressSource.onmessage = function(event) {
+            const [progress, stock] = event.data.split(",");
+            const progressBar = document.getElementById('progress-bar');
+            progressBar.style.width = progress + "%";
+            progressBar.innerText = progress + "%";
+
+            if (stock.trim()) {
+                const stockList = document.getElementById('stock-list');
+                const listItem = document.createElement('li');
+                listItem.textContent = stock;
+                stockList.appendChild(listItem);
+            }
+
+            if (parseFloat(progress) >= 100) {
+                progressSource.close();
+            }
+        };
+    </script>
+</body>
+</html>
